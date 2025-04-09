@@ -1,0 +1,47 @@
+.root {
+    -fx-background-color: #1C2541;
+    -fx-text-fill: #FBFCFF;
+}
+
+.label {
+    -fx-text-fill: #FBFCFF;
+}
+
+.button {
+    -fx-background-color: #1C444A;
+    -fx-text-fill:  #A9EAEF;
+}
+
+.text-field {
+    -fx-background-color: #1C444A;
+    -fx-text-fill:  #A9EAEF;
+    -fx-prompt-text-fill: #5CB5CD;
+}
+.text-field .viewport{
+    -fx-background-color: transparent;
+}
+.text-field .content{
+    -fx-background-color: transparent;
+}
+
+.list-view {
+    -fx-padding: 0px;
+}
+
+.list-cell {
+    -fx-background-color: #1C444A;
+    -fx-text-fill: #A9EAEF;
+    -fx-font-size: 2.5em;
+}
+
+.text-area {
+    -fx-background-color: #1C444A;
+    -fx-text-fill:  #A9EAEF;
+    -fx-prompt-text-fill: #5CB5CD;
+}
+.text-area .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .content{
+    -fx-background-color: transparent;
+}
