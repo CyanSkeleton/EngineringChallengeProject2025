@@ -2,10 +2,13 @@ package com.jha.anubhav.engineeringchallenge2025;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Button;
 
 import java.util.*;
 
@@ -28,6 +31,9 @@ public class Controller implements Initializable {
     @FXML
     private Label deadlineDescription;
 
+    @FXML
+    private Button createNewDeadlineButton;
+
     Deadline deadline1 = new Deadline("Project1", "4/10/2025", "testing");
     Deadline deadline2 = new Deadline("Project2", "6/7/2025", "test");
     Deadline deadline3 = new Deadline("Project3", "5/4/2025", "tests");
@@ -42,6 +48,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1)
     {
+        System.out.println("e");
         deadlineDict.put(LocalDate.parse(deadline1.date, standardFormat), deadline1);
         deadlineDict.put(LocalDate.parse(deadline2.date, standardFormat), deadline2);
         deadlineDict.put(LocalDate.parse(deadline3.date, standardFormat), deadline3);
@@ -62,6 +69,13 @@ public class Controller implements Initializable {
                 deadlineDescription.setText(deadlineDict2.get(currentlySelected).description);
             }
         });
+        createNewDeadlineButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                
+            }
+        });
+
     }
 }
 
