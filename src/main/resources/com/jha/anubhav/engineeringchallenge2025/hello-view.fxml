@@ -193,11 +193,11 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <CheckBox mnemonicParsing="false" selected="true" text="Notification">
+                  <CheckBox fx:id="notification" mnemonicParsing="false" text="Notification">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></CheckBox>
-                  <TextField fx:id="dateField1111" layoutX="10.0" layoutY="124.0" maxHeight="-Infinity" prefHeight="30.0" promptText="Notification Time">
+                  <TextField fx:id="notificationTime" layoutX="10.0" layoutY="124.0" maxHeight="-Infinity" prefHeight="30.0" promptText="Notification Time">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -210,21 +210,21 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <CheckBox layoutX="10.0" layoutY="10.0" mnemonicParsing="false" selected="true" text="Email">
+                  <CheckBox fx:id="email" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Email">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <TextField fx:id="titleField11" maxHeight="-Infinity" prefHeight="30.0" promptText="Sender Email">
+                  <TextField fx:id="senderEmail" maxHeight="-Infinity" prefHeight="30.0" promptText="Sender Email">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></TextField>
-                  <TextField fx:id="dateField11" maxHeight="-Infinity" prefHeight="30.0" promptText="App Password">
+                  <TextField fx:id="appPassword" maxHeight="-Infinity" prefHeight="30.0" promptText="App Password">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="dateField111" layoutX="10.0" layoutY="45.0" maxHeight="-Infinity" prefHeight="30.0" promptText="Receiver Email">
+                  <TextField fx:id="receiverEmail" layoutX="10.0" layoutY="45.0" maxHeight="-Infinity" prefHeight="30.0" promptText="Receiver Email">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

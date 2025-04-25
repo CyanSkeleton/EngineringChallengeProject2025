@@ -7,11 +7,11 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import org.quartz.*;
 
+import java.awt.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import static com.jha.anubhav.engineeringchallenge2025.Controller.emailAddress;
-import static com.jha.anubhav.engineeringchallenge2025.Controller.session;
+import static com.jha.anubhav.engineeringchallenge2025.Controller.*;
 
 public class ReminderClass implements Job {
     @Override
@@ -33,11 +33,13 @@ public class ReminderClass implements Job {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("ReminderApp@gmail.com"));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress));
-            message.setSubject("Testing");
-            message.setText("Lorem Ipsum");
+            message.setSubject("Reminder for " + title);
+            message.setText("You have a deadline for " + title + " today\n" + description);
             Transport.send(message);
         } catch (MessagingException e) {
             System.out.println(e.toString());
-        }*/
+        } */
+
+        trayIcon.displayMessage(title, description, TrayIcon.MessageType.INFO);
     }
 }

@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.CheckBox;
+import javafx.scene.layout.HBox;
 
 import java.awt.*;
 
@@ -27,7 +29,7 @@ import java.util.List;
 
 import jakarta.mail.*;
 
-import javafx.scene.layout.HBox;
+
 import org.quartz.*;
 import org.quartz.impl.*;
 
@@ -79,9 +81,9 @@ public class Controller implements Initializable {
     private HBox settingsMenu;
 
     @FXML
-    private Checkbox notification;
+    private CheckBox notification;
     @FXML
-    private Checkbox email;
+    private CheckBox email;
     @FXML
     private TextField senderEmail;
     @FXML
@@ -99,8 +101,9 @@ public class Controller implements Initializable {
 
     static Session session;
 
-    static List<String> deadlineTitles = new ArrayList<>();
+    static TrayIcon trayIcon;
 
+    static List<String> deadlineTitles = new ArrayList<>();
     static Map<String, Deadline> deadlineDict = new TreeMap<>();
     
     String currentlySelected;
@@ -135,7 +138,6 @@ public class Controller implements Initializable {
         try {
             scheduler.scheduleJob(job, trigger);
         } catch (SchedulerException e) {
-            System.out.println(e);
             throw new RuntimeException(e);
         }
         deadlineMenuA.setDisable(true);
@@ -208,12 +210,10 @@ public class Controller implements Initializable {
     }
 
     public void saveSettings() {
-        settings.notifications = notification.getState();
-        settings.emails = email.getState();
-        settings.senderEmail = senderEmail.getText();
-        settings.appPassword = appPassword.getText();
-        settings.receiverEmail = receiverEmail.getText();
-        settings.reminderTime = notificationTime.getText();
+        settings = new SettingsClass(notification.isSelected(), email.isSelected(), senderEmail.getText(),
+                appPassword.getText(), receiverEmail.getText(), notificationTime.getText());
+        settingsMenu.setDisable(true);
+        settingsMenu.setOpacity(0);
     }
 
     public static void saveDataToDesk() throws IOException {
@@ -245,6 +245,27 @@ public class Controller implements Initializable {
         Reader reader3 = new FileReader("deadlineDict.json");
         deadlineDict = gson.fromJson(reader3, mapType);
         reader3.close();
+        int i = 1;
+        for(Deadline deadline:deadlineDict.values()) {
+            JobDetail job = newJob(ReminderClass.class)
+                    .withIdentity("job" + Integer.toString(i),
+                            "group" + Integer.toString(i))
+                    .usingJobData("notifications", true)
+                    .usingJobData("emails", true)
+                    .usingJobData("title", deadline.title)
+                    .usingJobData("date", deadline.date)
+                    .usingJobData("description", deadline.description)
+                    .build();
+
+            CronTrigger trigger = TriggerBuilder.newTrigger()
+                    .withIdentity("trigger" + Integer.toString(i),
+                            "group" + Integer.toString(i))
+                    .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))
+                    .forJob("job" + Integer.toString(i),
+                            "group" + Integer.toString(i))
+                    .build();
+            i++;
+        }
     }
 
     public void OpenDeadlineMenuA() {
@@ -258,6 +279,12 @@ public class Controller implements Initializable {
     }
 
     public void OpenSettingMenu() {
+        notification.setSelected(settings.notifications);
+        email.setSelected(settings.emails);
+        senderEmail.setText(settings.senderEmail);
+        appPassword.setText(settings.appPassword);
+        receiverEmail.setText(settings.receiverEmail);
+        notificationTime.setText(settings.reminderTime);
         settingsMenu.setDisable(false);
         settingsMenu.setOpacity(100);
     }
@@ -301,23 +328,23 @@ public class Controller implements Initializable {
             throw new RuntimeException(e);
         }
 
-        //Properties prop = new Properties();
-       // prop.put("mail.smtp.host", "smtp.gmail.com");
-       // prop.put("mail.smtp.port", "465");
-        //prop.put("mail.smtp.auth", "true");
-        //prop.put("mail.smtp.socketFactory.port", "465");
-        //prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "465");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.socketFactory.port", "465");
+        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
 
-        //session = Session.getInstance(prop, new jakarta.mail.Authenticator(){
-        //    protected PasswordAuthentication getPasswordAuthentication(){
-        //        return new PasswordAuthentication(emailAddress, password);
-        //    }
-        //});
+        session = Session.getInstance(prop, new jakarta.mail.Authenticator(){
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(emailAddress, password);
+            }
+        });
 
         SystemTray sysTray = SystemTray.getSystemTray();
         Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
-        TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
+        trayIcon = new TrayIcon(image, "Tray Demo");
         trayIcon.setToolTip("System tray icon demo");
         try {
             sysTray.add(trayIcon);
@@ -339,10 +366,6 @@ public class Controller implements Initializable {
                 } catch (Exception e) {
                     System.out.println("expected error that occurs because size of dict has changed");
                 }
-                /*if (x.isEqual(LocalDate.now())) {
-                    trayIcon.displayMessage(currentlySelected,
-                            deadlineDict2.get(currentlySelected).description, MessageType.INFO);
-                }*/
             }
         });
         createNewDeadlineButton.setOnAction(new EventHandler<ActionEvent>() {
