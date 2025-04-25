@@ -12,6 +12,18 @@
     -fx-text-fill:  #A9EAEF;
 }
 
+.check-box {
+    -fx-text-fill: #A9EAEF;
+}
+
+#deadlineMenuA, #deadlineMenuB, #settingsMenu {
+    -fx-background-color: #1C2541;
+    -fx-background-radius: 15px;
+    -fx-border-color: #A9EAEF;
+    -fx-border-radius: 15px;
+    -fx-border-width: 2px;
+}
+
 .text-field {
     -fx-background-color: #1C444A;
     -fx-text-fill:  #A9EAEF;

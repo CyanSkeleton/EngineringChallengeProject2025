@@ -5,109 +5,249 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@GUI.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jha.anubhav.engineeringchallenge2025.Controller">
+<StackPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@GUI.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jha.anubhav.engineeringchallenge2025.Controller">
    <children>
-      <Label text="Deadline">
-         <font>
-            <Font size="50.0" />
-         </font>
-      </Label>
-      <HBox prefHeight="325.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="1920.0">
          <children>
-            <ListView fx:id="deadlinesList" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1000.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <HBox.margin>
-                  <Insets bottom="40.0" left="40.0" right="20.0" />
-               </HBox.margin>
-            </ListView>
-            <VBox fillWidth="false" prefHeight="326.0" prefWidth="255.0" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="40.0" />
-               </HBox.margin>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="73.0" prefWidth="1000.0" text="Deadlines" textAlignment="CENTER">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1000.0" prefWidth="1920.0">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
+                  <ListView fx:id="deadlinesList" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
+                     <opaqueInsets>
                         <Insets />
-                     </VBox.margin>
-                     <children>
-                        <Label fx:id="deadlineTitle" prefHeight="18.0" prefWidth="255.2" text="Title" VBox.vgrow="ALWAYS">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="deadlineDate" text="Due Date" VBox.vgrow="ALWAYS">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="deadlineDescription" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="1000.0" text="Description" VBox.vgrow="ALWAYS">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="40.0" left="40.0" right="20.0" />
+                     </HBox.margin>
                      <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </VBox>
-                  <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Button fx:id="createNewDeadlineButton" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" text="New Deadline" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets top="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Button>
-                        <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" text="Edit" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets left="40.0" top="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0">
-                     <children>
-                        <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="750.0">
-                           <children>
-                              <TextField fx:id="titleField" maxHeight="-Infinity" prefHeight="30.0" promptText="Title" />
-                              <TextField fx:id="dateField" maxHeight="-Infinity" prefHeight="30.0" promptText="Date (month/day/year)">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextArea fx:id="descriptionField" maxHeight="-Infinity" prefHeight="190.0" prefWidth="400.0" promptText="Description">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </TextArea>
-                           </children>
-                        </VBox>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Create">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
                         <Insets bottom="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets top="20.0" />
                      </padding>
-                  </HBox>
+                  </ListView>
+                  <VBox fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="1000.0" prefWidth="880.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="40.0" />
+                     </HBox.margin>
+                     <children>
+                        <VBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="1004.0" prefWidth="880.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                              <Label fx:id="deadlineTitle" prefHeight="18.0" prefWidth="255.2" text="Title" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="deadlineDate" text="Due Date" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="deadlineDescription" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="1000.0" text="Description" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </VBox>
+                        <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="82.5" prefWidth="880.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OpenDeadlineMenuA" prefHeight="62.5" prefWidth="110.0" text="New Deadline" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OpenDeadlineMenuB" prefHeight="62.5" prefWidth="110.0" text="Edit Deadline" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="40.0" top="20.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="894.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="82.5" prefWidth="880.0">
+                           <children>
+                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteDeadline" prefHeight="62.5" prefWidth="110.0" text="Delete Deadline" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OpenSettingMenu" prefHeight="62.5" prefWidth="110.0" text="Settings" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="40.0" top="20.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
+            </HBox>
+         </children></VBox>
+      <HBox id="deadlineMenuA" fx:id="deadlineMenuA" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.0" prefHeight="310.0" prefWidth="1010.0" StackPane.alignment="CENTER">
+         <children>
+            <VBox maxWidth="1.7976931348623157E308" prefHeight="301.0" prefWidth="750.0">
+               <children>
+                  <TextField fx:id="titleField" maxHeight="-Infinity" prefHeight="30.0" promptText="Title" />
+                  <TextField fx:id="dateField" maxHeight="-Infinity" prefHeight="30.0" promptText="Date (month/day/year)">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextArea fx:id="descriptionField" maxHeight="-Infinity" prefHeight="200.0" prefWidth="400.0" promptText="Description">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                           </TextArea>
+               </children>
+            </VBox>
+            <VBox prefHeight="270.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="createNewDeadlineButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Create" />
+                  <Button mnemonicParsing="false" onAction="#CloseDeadlineMenuA" prefHeight="50.0" prefWidth="200.0" text="Cancel">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
             </VBox>
          </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox id="deadlineMenuB" fx:id="deadlineMenuB" disable="true" layoutX="465.0" layoutY="395.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.0" prefHeight="310.0" prefWidth="1010.0" StackPane.alignment="CENTER">
+         <children>
+            <VBox maxWidth="1.7976931348623157E308" prefHeight="301.0" prefWidth="750.0">
+               <children>
+                  <TextField fx:id="titleField2" maxHeight="-Infinity" prefHeight="30.0" promptText="Title" />
+                  <TextField fx:id="dateField2" maxHeight="-Infinity" prefHeight="30.0" promptText="Date (month/day/year)">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextArea fx:id="descriptionField2" maxHeight="-Infinity" prefHeight="200.0" prefWidth="400.0" promptText="Description">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextArea>
+               </children>
+            </VBox>
+            <VBox prefHeight="270.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="editNewDeadlineButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Edit" />
+                  <Button mnemonicParsing="false" onAction="#CloseDeadlineMenuB" prefHeight="50.0" prefWidth="200.0" text="Cancel">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox id="settingsMenu" fx:id="settingsMenu" layoutX="465.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="310.0" prefWidth="1010.0" StackPane.alignment="CENTER">
+         <children>
+            <VBox maxWidth="1.7976931348623157E308" prefHeight="301.0" prefWidth="750.0">
+               <children>
+                  <Label text="Notifications">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" selected="true" text="Notification">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></CheckBox>
+                  <TextField fx:id="dateField1111" layoutX="10.0" layoutY="124.0" maxHeight="-Infinity" prefHeight="30.0" promptText="Notification Time">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label layoutX="10.0" layoutY="10.0" text="Emails">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <CheckBox layoutX="10.0" layoutY="10.0" mnemonicParsing="false" selected="true" text="Email">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <TextField fx:id="titleField11" maxHeight="-Infinity" prefHeight="30.0" promptText="Sender Email">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></TextField>
+                  <TextField fx:id="dateField11" maxHeight="-Infinity" prefHeight="30.0" promptText="App Password">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="dateField111" layoutX="10.0" layoutY="45.0" maxHeight="-Infinity" prefHeight="30.0" promptText="Receiver Email">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="270.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#saveSettings" prefHeight="50.0" prefWidth="200.0" text="Save" />
+                  <Button mnemonicParsing="false" onAction="#CloseSettingMenu" prefHeight="50.0" prefWidth="200.0" text="Cancel">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
       </HBox>
    </children>
-</VBox>
+</StackPane>
