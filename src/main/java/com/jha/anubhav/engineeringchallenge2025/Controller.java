@@ -130,7 +130,7 @@ public class Controller implements Initializable {
         CronTrigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("trigger" + Integer.toString(alrExistingJobs),
                         "group" + Integer.toString(alrExistingJobs))
-                .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 6 * * ?"))
                 .forJob("job" + Integer.toString(alrExistingJobs),
                         "group" + Integer.toString(alrExistingJobs))
                 .build();
@@ -171,7 +171,7 @@ public class Controller implements Initializable {
         CronTrigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("trigger" + Integer.toString(index),
                         "group" + Integer.toString(deadlineTitles.indexOf(currentlySelectedDeadline.title) + 1))
-                .withSchedule(CronScheduleBuilder.cronSchedule("0/30 * * * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 6 * * ?"))
                 .forJob("job" + Integer.toString(index),
                         "group" + Integer.toString(index))
                 .build();
