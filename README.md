@@ -1,4 +1,5 @@
 # Reminder App
+Note: I forgot to commit my most recent changes so the current files are a bit outdated and have some issues, I will commit the updated version and add a release once I get home. If you want to see it, watch this repo (the button next to "fork" and "star").
 ## Setup
 ### Main Setup
 1. Download the zip file in Releases
