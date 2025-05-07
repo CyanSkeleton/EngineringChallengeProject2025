@@ -207,7 +207,7 @@ public class Controller implements Initializable {
         settingsMenu.setOpacity(0);
     }
 
-    public static void saveDataToDesk() throws IOException {
+    public static void saveDataToDisk() throws IOException {
         Gson gson = new GsonBuilder()
                 .create();
         Writer writer = new FileWriter("settings.json");
@@ -222,7 +222,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void readDataFromDesk() throws IOException {
+    public void readDataFromDisk() throws IOException {
         Gson gson = new GsonBuilder()
                 .create();
         Reader reader = new FileReader("settings.json");
@@ -271,12 +271,12 @@ public class Controller implements Initializable {
         }
     }
 
-    public void OpenDeadlineMenuA() {
+    public void openDeadlineMenuA() {
         deadlineMenuA.setDisable(false);
         deadlineMenuA.setOpacity(100);
     }
 
-    public void OpenDeadlineMenuB() {
+    public void openDeadlineMenuB() {
         Deadline selectedDeadline = deadlineDict.get(currentlySelected);
         titleField2.setText(selectedDeadline.title);
         dateField2.setText(selectedDeadline.date);
@@ -285,7 +285,7 @@ public class Controller implements Initializable {
         deadlineMenuB.setOpacity(100);
     }
 
-    public void OpenSettingMenu() {
+    public void openSettingMenu() {
         notification.setSelected(settings.notifications);
         email.setSelected(settings.emails);
         senderEmail.setText(settings.senderEmail);
@@ -296,17 +296,17 @@ public class Controller implements Initializable {
         settingsMenu.setOpacity(100);
     }
 
-    public void CloseDeadlineMenuA() {
+    public void closeDeadlineMenuA() {
         deadlineMenuA.setDisable(true);
         deadlineMenuA.setOpacity(0);
     }
 
-    public void CloseDeadlineMenuB() {
+    public void closeDeadlineMenuB() {
         deadlineMenuB.setDisable(true);
         deadlineMenuB.setOpacity(0);
     }
 
-    public void CloseSettingMenu() {
+    public void closeSettingMenu() {
         settingsMenu.setDisable(true);
         settingsMenu.setOpacity(0);
     }
@@ -329,7 +329,7 @@ public class Controller implements Initializable {
         }
 
         try {
-            readDataFromDesk();
+            readDataFromDisk();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -340,7 +340,6 @@ public class Controller implements Initializable {
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.socketFactory.port", "465");
         prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
 
         session = Session.getInstance(prop, new jakarta.mail.Authenticator(){
             protected PasswordAuthentication getPasswordAuthentication(){

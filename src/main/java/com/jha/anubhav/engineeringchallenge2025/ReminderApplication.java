@@ -8,7 +8,7 @@ import org.quartz.SchedulerException;
 
 import java.io.IOException;
 
-import static com.jha.anubhav.engineeringchallenge2025.Controller.saveDataToDesk;
+import static com.jha.anubhav.engineeringchallenge2025.Controller.saveDataToDisk;
 import static com.jha.anubhav.engineeringchallenge2025.Controller.scheduler;
 
 public class ReminderApplication extends Application {
@@ -25,7 +25,7 @@ public class ReminderApplication extends Application {
     @Override
     public void stop(){
         try {
-            saveDataToDesk();
+            saveDataToDisk();
             scheduler.shutdown();
         } catch (SchedulerException | IOException e) {
             throw new RuntimeException(e);

@@ -59,7 +59,7 @@
                         </VBox>
                         <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="82.5" prefWidth="880.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OpenDeadlineMenuA" prefHeight="62.5" prefWidth="110.0" text="New Deadline" HBox.hgrow="ALWAYS">
+                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openDeadlineMenuA" prefHeight="62.5" prefWidth="110.0" text="New Deadline" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets top="20.0" />
                                  </HBox.margin>
@@ -67,7 +67,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Button>
-                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OpenDeadlineMenuB" prefHeight="62.5" prefWidth="110.0" text="Edit Deadline" HBox.hgrow="ALWAYS">
+                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openDeadlineMenuB" prefHeight="62.5" prefWidth="110.0" text="Edit Deadline" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="40.0" top="20.0" />
                                  </HBox.margin>
@@ -90,7 +90,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Button>
-                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OpenSettingMenu" prefHeight="62.5" prefWidth="110.0" text="Settings" HBox.hgrow="ALWAYS">
+                              <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openSettingMenu" prefHeight="62.5" prefWidth="110.0" text="Settings" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="40.0" top="20.0" />
                                  </HBox.margin>
@@ -131,7 +131,7 @@
             <VBox prefHeight="270.0" prefWidth="200.0">
                <children>
                   <Button fx:id="createNewDeadlineButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Create" />
-                  <Button mnemonicParsing="false" onAction="#CloseDeadlineMenuA" prefHeight="50.0" prefWidth="200.0" text="Cancel">
+                  <Button mnemonicParsing="false" onAction="#closeDeadlineMenuA" prefHeight="50.0" prefWidth="200.0" text="Cancel">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -169,7 +169,7 @@
             <VBox prefHeight="270.0" prefWidth="200.0">
                <children>
                   <Button fx:id="editNewDeadlineButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Edit" />
-                  <Button mnemonicParsing="false" onAction="#CloseDeadlineMenuB" prefHeight="50.0" prefWidth="200.0" text="Cancel">
+                  <Button mnemonicParsing="false" onAction="#closeDeadlineMenuB" prefHeight="50.0" prefWidth="200.0" text="Cancel">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -234,7 +234,7 @@
             <VBox prefHeight="270.0" prefWidth="200.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#saveSettings" prefHeight="50.0" prefWidth="200.0" text="Save" />
-                  <Button mnemonicParsing="false" onAction="#CloseSettingMenu" prefHeight="50.0" prefWidth="200.0" text="Cancel">
+                  <Button mnemonicParsing="false" onAction="#closeSettingMenu" prefHeight="50.0" prefWidth="200.0" text="Cancel">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
