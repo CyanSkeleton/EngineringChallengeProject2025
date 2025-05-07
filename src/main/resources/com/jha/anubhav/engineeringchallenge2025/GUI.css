@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: #1C2541;
+    -fx-background-color: #0a171a;
     -fx-text-fill: #FBFCFF;
 }
 
@@ -9,7 +9,11 @@
 
 .button {
     -fx-background-color: #1C444A;
-    -fx-text-fill:  #A9EAEF;
+    -fx-text-fill: #A9EAEF;
+}
+
+.button:pressed {
+    -fx-background-color: #398A96;
 }
 
 .check-box {
@@ -17,7 +21,7 @@
 }
 
 #deadlineMenuA, #deadlineMenuB, #settingsMenu {
-    -fx-background-color: #1C2541;
+    -fx-background-color: #0a171a;
     -fx-background-radius: 15px;
     -fx-border-color: #A9EAEF;
     -fx-border-radius: 15px;
@@ -38,12 +42,17 @@
 
 .list-view {
     -fx-padding: 0px;
+    -fx-background-color: #1C444A;
 }
 
 .list-cell {
     -fx-background-color: #1C444A;
-    -fx-text-fill: #A9EAEF;
+    -fx-text-fill: #b5faff;
     -fx-font-size: 2.5em;
+}
+
+.list-cell:selected {
+    -fx-background-color: #398A96;
 }
 
 .text-area {
