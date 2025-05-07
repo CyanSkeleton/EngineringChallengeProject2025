@@ -27,8 +27,6 @@ public class ReminderClass implements Job {
         String date = dataMap.getString("date");
         String description = dataMap.getString("description");
 
-        System.out.println(date);
-
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("ReminderApp@gmail.com"));

@@ -130,10 +130,15 @@ public class Controller implements Initializable {
                 .usingJobData("description", description)
                 .build();
 
+        LocalTime timePart = LocalTime.parse(settings.reminderTime, timeFormat);
+        LocalDate datePart = LocalDate.parse(deadline.date, dateFormat);
+        LocalDateTime cronTrigDate = LocalDateTime.of(datePart, timePart);
+        String cronTrigDate2 = cronTrigDate.format(triggerFormat);
+
         CronTrigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("trigger" + Integer.toString(alrExistingJobs),
                         "group" + Integer.toString(alrExistingJobs))
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 6 * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule(cronTrigDate2))
                 .forJob("job" + Integer.toString(alrExistingJobs),
                         "group" + Integer.toString(alrExistingJobs))
                 .build();
@@ -171,10 +176,15 @@ public class Controller implements Initializable {
                 .usingJobData("description", description)
                 .build();
 
+        LocalTime timePart = LocalTime.parse(settings.reminderTime, timeFormat);
+        LocalDate datePart = LocalDate.parse(currentlySelectedDeadline.date, dateFormat);
+        LocalDateTime cronTrigDate = LocalDateTime.of(datePart, timePart);
+        String cronTrigDate2 = cronTrigDate.format(triggerFormat);
+
         CronTrigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("trigger" + Integer.toString(index),
                         "group" + Integer.toString(deadlineTitles.indexOf(currentlySelectedDeadline.title) + 1))
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 6 * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule(cronTrigDate2))
                 .forJob("job" + Integer.toString(index),
                         "group" + Integer.toString(index))
                 .build();
@@ -249,10 +259,7 @@ public class Controller implements Initializable {
         deadlineDict = gson.fromJson(reader3, mapType);
         reader3.close();
 
-
         LocalTime timePart = LocalTime.parse(settings.reminderTime, timeFormat);
-        //LocalTime ee = LocalTime.parse("0 0 6 28 4 ? 2025", triggerFormat);
-        System.out.println(timePart);
 
         int i = 1;
         for(Deadline deadline:deadlineDict.values()) {
@@ -269,7 +276,6 @@ public class Controller implements Initializable {
             LocalDate datePart = LocalDate.parse(deadline.date, dateFormat);
             LocalDateTime cronTrigDate = LocalDateTime.of(datePart, timePart);
             String cronTrigDate2 = cronTrigDate.format(triggerFormat);
-            System.out.println(cronTrigDate2);
 
             CronTrigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity("trigger" + Integer.toString(i),
@@ -293,6 +299,10 @@ public class Controller implements Initializable {
     }
 
     public void OpenDeadlineMenuB() {
+        Deadline selectedDeadline = deadlineDict.get(currentlySelected);
+        titleField2.setText(selectedDeadline.title);
+        dateField2.setText(selectedDeadline.date);
+        descriptionField2.setText(selectedDeadline.description);
         deadlineMenuB.setDisable(false);
         deadlineMenuB.setOpacity(100);
     }
@@ -397,7 +407,6 @@ public class Controller implements Initializable {
         editNewDeadlineButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                System.out.println("e");
                 editDeadline(titleField2.getText(), dateField2.getText(), descriptionField2.getText());
                 refreshGUI();
             }
