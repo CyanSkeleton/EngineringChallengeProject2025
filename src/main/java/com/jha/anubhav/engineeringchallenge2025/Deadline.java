@@ -1,7 +1,5 @@
 package com.jha.anubhav.engineeringchallenge2025;
 
-import java.time.LocalDate;
-
 public class Deadline {
     public String title;
     public String date;

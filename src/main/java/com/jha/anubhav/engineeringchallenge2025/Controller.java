@@ -15,74 +15,55 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
-
 import java.awt.*;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
 import java.util.*;
 import java.util.List;
-
 import jakarta.mail.*;
-
-
 import org.quartz.*;
 import org.quartz.impl.*;
-
 import com.google.gson.Gson;
 import java.io.*;
-
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.JobKey.jobKey;
 
-
 public class Controller implements Initializable {
-
     @FXML
     private ListView<String> deadlinesList;
-
     @FXML
     private Label deadlineTitle;
-
     @FXML
     private Label deadlineDate;
-
     @FXML
     private Label deadlineDescription;
-
     @FXML
     private Button createNewDeadlineButton;
     @FXML
     private Button editNewDeadlineButton;
-
     @FXML
     private TextField titleField;
     @FXML
     private TextField dateField;
     @FXML
     private TextArea descriptionField;
-
     @FXML
     private TextField titleField2;
     @FXML
     private TextField dateField2;
     @FXML
     private TextArea descriptionField2;
-
     @FXML
     private HBox deadlineMenuA;
     @FXML
     private HBox deadlineMenuB;
     @FXML
     private HBox settingsMenu;
-
     @FXML
     private CheckBox notification;
     @FXML
@@ -99,14 +80,11 @@ public class Controller implements Initializable {
     public static SettingsClass settings;
 
     static Scheduler scheduler;
-
     static Session session;
-
     static TrayIcon trayIcon;
 
     static List<String> deadlineTitles = new ArrayList<>();
     static Map<String, Deadline> deadlineDict = new TreeMap<>();
-    
     String currentlySelected;
 
     public DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("M/d/uuuu");
@@ -121,8 +99,8 @@ public class Controller implements Initializable {
         int alrExistingJobs = deadlineDict.size();
 
         JobDetail job = newJob(ReminderClass.class)
-                .withIdentity("job" + Integer.toString(alrExistingJobs),
-                        "group" + Integer.toString(alrExistingJobs))
+                .withIdentity("job" + alrExistingJobs,
+                        "group" + alrExistingJobs)
                 .usingJobData("notifications", true)
                 .usingJobData("emails", true)
                 .usingJobData("title", title)
@@ -136,11 +114,11 @@ public class Controller implements Initializable {
         String cronTrigDate2 = cronTrigDate.format(triggerFormat);
 
         CronTrigger trigger = TriggerBuilder.newTrigger()
-                .withIdentity("trigger" + Integer.toString(alrExistingJobs),
-                        "group" + Integer.toString(alrExistingJobs))
+                .withIdentity("trigger" + alrExistingJobs,
+                        "group" + alrExistingJobs)
                 .withSchedule(CronScheduleBuilder.cronSchedule(cronTrigDate2))
-                .forJob("job" + Integer.toString(alrExistingJobs),
-                        "group" + Integer.toString(alrExistingJobs))
+                .forJob("job" + alrExistingJobs,
+                        "group" + alrExistingJobs)
                 .build();
 
         try {
@@ -167,8 +145,8 @@ public class Controller implements Initializable {
         deadlineDict.put(title, deadlineB);
 
         JobDetail job = newJob(ReminderClass.class)
-                .withIdentity("job" + Integer.toString(index),
-                        "group" + Integer.toString(index))
+                .withIdentity("job" + index,
+                        "group" + index)
                 .usingJobData("notifications", true)
                 .usingJobData("emails", true)
                 .usingJobData("title", title)
@@ -182,11 +160,11 @@ public class Controller implements Initializable {
         String cronTrigDate2 = cronTrigDate.format(triggerFormat);
 
         CronTrigger trigger = TriggerBuilder.newTrigger()
-                .withIdentity("trigger" + Integer.toString(index),
-                        "group" + Integer.toString(deadlineTitles.indexOf(currentlySelectedDeadline.title) + 1))
+                .withIdentity("trigger" + index,
+                        "group" + deadlineTitles.indexOf(currentlySelectedDeadline.title) + 1)
                 .withSchedule(CronScheduleBuilder.cronSchedule(cronTrigDate2))
-                .forJob("job" + Integer.toString(index),
-                        "group" + Integer.toString(index))
+                .forJob("job" + index,
+                        "group" + index)
                 .build();
 
         try {
@@ -264,8 +242,8 @@ public class Controller implements Initializable {
         int i = 1;
         for(Deadline deadline:deadlineDict.values()) {
             JobDetail job = newJob(ReminderClass.class)
-                    .withIdentity("job" + Integer.toString(i),
-                            "group" + Integer.toString(i))
+                    .withIdentity("job" + i,
+                            "group" + i)
                     .usingJobData("notifications", true)
                     .usingJobData("emails", true)
                     .usingJobData("title", deadline.title)
@@ -278,11 +256,11 @@ public class Controller implements Initializable {
             String cronTrigDate2 = cronTrigDate.format(triggerFormat);
 
             CronTrigger trigger = TriggerBuilder.newTrigger()
-                    .withIdentity("trigger" + Integer.toString(i),
-                            "group" + Integer.toString(i))
+                    .withIdentity("trigger" + i,
+                            "group" + i)
                     .withSchedule(CronScheduleBuilder.cronSchedule(cronTrigDate2))
-                    .forJob("job" + Integer.toString(i),
-                            "group" + Integer.toString(i))
+                    .forJob("job" + i,
+                            "group" + i)
                     .build();
             try {
                 scheduler.scheduleJob(job, trigger);
@@ -343,7 +321,6 @@ public class Controller implements Initializable {
         settingsMenu.setDisable(true);
         settingsMenu.setOpacity(0);
 
-        SchedulerFactory schedulerFactory = new StdSchedulerFactory();
         try {
             scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
@@ -397,14 +374,14 @@ public class Controller implements Initializable {
                 }
             }
         });
-        createNewDeadlineButton.setOnAction(new EventHandler<ActionEvent>() {
+        createNewDeadlineButton.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 addDeadline(titleField.getText(), dateField.getText(), descriptionField.getText());
                 refreshGUI();
             }
         });
-        editNewDeadlineButton.setOnAction(new EventHandler<ActionEvent>() {
+        editNewDeadlineButton.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 editDeadline(titleField2.getText(), dateField2.getText(), descriptionField2.getText());
