@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import java.util.*;
@@ -95,8 +98,6 @@ public class Controller implements Initializable {
 
     public static SettingsClass settings;
 
-    static String emailAddress = "jhaanubhav8305@gmail.com";
-    static String password = "welv ikca qurp vorf ";
     static Scheduler scheduler;
 
     static Session session;
@@ -108,7 +109,9 @@ public class Controller implements Initializable {
     
     String currentlySelected;
 
-    public DateTimeFormatter standardFormat = DateTimeFormatter.ofPattern("M/d/uuuu");
+    public DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("M/d/uuuu");
+    public DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("H:mm");
+    public DateTimeFormatter triggerFormat = DateTimeFormatter.ofPattern("0 m H d M ? yyyy");
 
     public void addDeadline(String title, String date, String description) {
         Deadline deadline = new Deadline(title, date, description);
@@ -205,7 +208,7 @@ public class Controller implements Initializable {
         deadlinesList.getItems().clear();
         deadlinesList.getItems().addAll(deadlineTitles);
         deadlineTitle.setText("Title");
-        deadlineDate.setText("Due Date: ");
+        deadlineDate.setText("Reminder Date: ");
         deadlineDescription.setText("Description");
     }
 
@@ -245,6 +248,12 @@ public class Controller implements Initializable {
         Reader reader3 = new FileReader("deadlineDict.json");
         deadlineDict = gson.fromJson(reader3, mapType);
         reader3.close();
+
+
+        LocalTime timePart = LocalTime.parse(settings.reminderTime, timeFormat);
+        //LocalTime ee = LocalTime.parse("0 0 6 28 4 ? 2025", triggerFormat);
+        System.out.println(timePart);
+
         int i = 1;
         for(Deadline deadline:deadlineDict.values()) {
             JobDetail job = newJob(ReminderClass.class)
@@ -257,13 +266,23 @@ public class Controller implements Initializable {
                     .usingJobData("description", deadline.description)
                     .build();
 
+            LocalDate datePart = LocalDate.parse(deadline.date, dateFormat);
+            LocalDateTime cronTrigDate = LocalDateTime.of(datePart, timePart);
+            String cronTrigDate2 = cronTrigDate.format(triggerFormat);
+            System.out.println(cronTrigDate2);
+
             CronTrigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity("trigger" + Integer.toString(i),
                             "group" + Integer.toString(i))
-                    .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))
+                    .withSchedule(CronScheduleBuilder.cronSchedule(cronTrigDate2))
                     .forJob("job" + Integer.toString(i),
                             "group" + Integer.toString(i))
                     .build();
+            try {
+                scheduler.scheduleJob(job, trigger);
+            } catch (SchedulerException e) {
+                System.out.println(e);
+            }
             i++;
         }
     }
@@ -307,12 +326,6 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1)
     {
-        try {
-            readDataFromDesk();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         deadlineMenuA.setDisable(true);
         deadlineMenuA.setOpacity(0);
         deadlineMenuB.setDisable(true);
@@ -328,6 +341,12 @@ public class Controller implements Initializable {
             throw new RuntimeException(e);
         }
 
+        try {
+            readDataFromDesk();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "465");
@@ -338,7 +357,7 @@ public class Controller implements Initializable {
 
         session = Session.getInstance(prop, new jakarta.mail.Authenticator(){
             protected PasswordAuthentication getPasswordAuthentication(){
-                return new PasswordAuthentication(emailAddress, password);
+                return new PasswordAuthentication(settings.senderEmail, settings.appPassword);
             }
         });
 
@@ -361,7 +380,7 @@ public class Controller implements Initializable {
                 currentlySelected = deadlinesList.getSelectionModel().getSelectedItem();
                 deadlineTitle.setText(currentlySelected);
                 try {
-                    deadlineDate.setText("Due Date: " + deadlineDict.get(currentlySelected).date);
+                    deadlineDate.setText("Reminder Date: " + deadlineDict.get(currentlySelected).date);
                     deadlineDescription.setText(deadlineDict.get(currentlySelected).description);
                 } catch (Exception e) {
                     System.out.println("expected error that occurs because size of dict has changed");

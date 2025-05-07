@@ -28,17 +28,17 @@ public class ReminderClass implements Job {
         String description = dataMap.getString("description");
 
         System.out.println(date);
-        /*
+
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("ReminderApp@gmail.com"));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(settings.receiverEmail));
             message.setSubject("Reminder for " + title);
             message.setText("You have a deadline for " + title + " today\n" + description);
             Transport.send(message);
         } catch (MessagingException e) {
             System.out.println(e.toString());
-        } */
+        }
 
         trayIcon.displayMessage(title, description, TrayIcon.MessageType.INFO);
     }
