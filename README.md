@@ -1,5 +1,6 @@
 # Reminder App
-Note: If you want to change the time in the settings menu, enter it in the 24-hour format
+Note: If you want to change the time in the settings menu, enter it in the 24-hour format.
+Note: I only have a 1080p monitor so this app may be buggy at different resolutions.
 ## Setup
 ### Main Setup
 1. Download the zip file in Releases once I finally compile it or compile the code yourself
