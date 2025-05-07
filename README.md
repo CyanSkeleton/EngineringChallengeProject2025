@@ -1,8 +1,8 @@
 # Reminder App
-Note: I forgot to commit my most recent changes so the current files are a bit outdated and have some issues, I will commit the updated version and add a release once I get home. If you want to see it, watch this repo (the button next to "fork" and "star").
+Note: If you want to change the time in the settings menu, enter it in the 24-hour format
 ## Setup
 ### Main Setup
-1. Download the zip file in Releases
+1. Download the zip file in Releases once I finally compile it or compile the code yourself
 2. Unzip the zip file in your download folder
 3. Move the contents of the zip file wherever you want but **keep ReminderAppDeadlines.json and ReminderAppSettings.json in the same folder as ReminderApp.exe**
 ### Setting up the email system
