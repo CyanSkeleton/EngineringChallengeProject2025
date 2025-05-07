@@ -5,7 +5,7 @@ Note: I only have a 1080p monitor so this app may be buggy at different resoluti
 ### Main Setup
 1. Download the zip file in Releases once I finally compile it or compile the code yourself
 2. Unzip the zip file in your download folder
-3. Move the contents of the zip file wherever you want but **keep ReminderAppDeadlines.json and ReminderAppSettings.json in the same folder as ReminderApp.exe**
+3. Move the contents of the zip file wherever you want but **keep settings.json, deadlineDict.json, and deadlineTitles.json in the same folder as ReminderApp.exe**
 ### Setting up the email system
 1. Create or log into a Google account
 2. Enable 2FA (two factor authentication)
