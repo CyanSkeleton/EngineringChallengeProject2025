@@ -14,7 +14,7 @@ import static com.jha.anubhav.engineeringchallenge2025.Controller.scheduler;
 public class ReminderApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ReminderApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ReminderApplication.class.getResource("mainApp.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Reminders");
         stage.setScene(scene);

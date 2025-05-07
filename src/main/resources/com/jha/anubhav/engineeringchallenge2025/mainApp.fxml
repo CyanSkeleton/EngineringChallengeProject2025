@@ -193,7 +193,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="notification" mnemonicParsing="false" text="Notification">
+                  <CheckBox fx:id="notification" mnemonicParsing="false" text="Notifications">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></CheckBox>
@@ -210,7 +210,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <CheckBox fx:id="email" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Email">
+                  <CheckBox fx:id="email" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Emails">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

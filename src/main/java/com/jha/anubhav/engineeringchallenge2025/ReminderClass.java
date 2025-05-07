@@ -27,7 +27,7 @@ public class ReminderClass implements Job {
                 message.setFrom(new InternetAddress("ReminderApp@gmail.com"));
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(settings.receiverEmail));
                 message.setSubject("Reminder for " + title);
-                message.setText("You have a deadline for " + title + " today\n" + description);
+                message.setText("You have a deadline for " + title + " coming up\n" + description);
                 Transport.send(message);
             } catch (MessagingException e) {
                 System.out.println(e);
